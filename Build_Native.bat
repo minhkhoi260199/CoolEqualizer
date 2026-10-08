@@ -8,7 +8,7 @@ if not exist "%CSC%" (
 )
 
 echo Dang bien dich CoolEqualizer.exe...
-"%CSC%" /r:Microsoft.VisualBasic.dll /target:winexe /out:CoolEqualizer.exe EqualizerApp.cs
+"%CSC%" /r:Microsoft.VisualBasic.dll /win32icon:app_icon.ico /target:winexe /out:CoolEqualizer.exe EqualizerApp.cs
 
 if exist CoolEqualizer.exe (
     echo Xong! Da tao CoolEqualizer.exe
