@@ -1,34 +1,17 @@
-# Cool Equalizer (APO) 🎛️
+# Cool Equalizer - Portable Edition 🚀
 
-A lightweight, zero-dependency, standalone 16-band Graphic Equalizer GUI built in native C# WinForms. Designed to run as a front-end for [Equalizer APO](https://equalizerapo.com/), this application features a sleek, futuristic VST Studio interface.
+This folder contains the **100% Portable Edition** of the Cool Equalizer (APO) front-end.
 
-![Cool Equalizer Interface](CE-icon2.png)
+## 🌟 Why Portable?
+- **True Single-File Executable**: The application compiles into a single, lightweight `CoolEqualizer.exe` (~1.5 MB).
+- **Self-Extracting UI Assets**: It automatically extracts its own embedded ICO file (`/win32icon`) to render the high-quality logo inside the app. No external `.png` or `.ico` files need to accompany the `.exe`.
+- **Zero Desktop Clutter**: Unlike traditional portable apps that drop `.txt` or `.ini` files next to the executable, this version cleverly hides its settings (`cool_settings.txt` and `cool_presets.txt`) directly inside the Equalizer APO configuration directory (`C:\Program Files\EqualizerAPO\config\`). You can leave the `.exe` on your pristine Desktop without it generating messy side-files!
 
-## 🌟 Features
-- **16-Band Graphic EQ**: Perfectly spaced frequency bands (2/3 octave) for precise audio control.
-- **Pre-amp Slider**: Dedicated pre-amp control isolated on the left side to compensate for volume loss when cutting frequencies.
-- **Elastic String Effect (Right-click)**: Dragging sliders with the Right Mouse Button simulates an elastic string, pulling adjacent bands automatically using Gaussian decay. 
-- **Single Band Edit (Left-click)**: Standard drag-and-drop on individual frequency bands.
-- **Modern Neon UI**: A beautiful cyberpunk-inspired VST-like interface with glowing Spline curves, semi-transparent spectrum bars, and a custom-drawn glowing "Modern Toggle" Power Switch.
-- **Preset Management**: Create, save, and delete custom presets. Includes default presets like Bass Boost, Treble Boost, and V-Shape.
-- **Auto-Persistence**: Remembers your EQ curve, Pre-amp value, and selected preset upon closing and automatically restores them when you reopen the app.
-- **Zero Dependencies**: Compiles directly using the built-in Windows `.NET csc.exe` compiler. No Visual Studio or heavy SDKs required.
+## 🛠️ How to Build
+Simply double-click the `Build_Native.bat` script. It uses the built-in Windows `csc.exe` compiler to instantly generate `CoolEqualizer.exe`. No Visual Studio required.
 
-## 🛠️ Prerequisites
-- **Windows OS** with .NET Framework 4.0 or higher (built-in on modern Windows).
-- **[Equalizer APO](https://sourceforge.net/projects/equalizerapo/)** installed and configured for your audio playback device.
-
-## 🚀 How to Build and Run
-You do not need an IDE or any external tools to build this app.
-
-1. Clone or download this repository.
-2. Double-click the `Build_Native.bat` script.
-   *(This script automatically uses the native Windows C# compiler `csc.exe` to compile the app in less than a second).*
-3. A new file named `CoolEqualizer.exe` will be generated.
-4. Double-click `CoolEqualizer.exe` to run the app.
-
-## ⚙️ How it works
-Under the hood, the app modifies the `C:\Program Files\EqualizerAPO\config\cool_eq.txt` file and links it to your main APO configuration. Equalizer APO instantly applies the EQ rules to your system audio output without any latency.
-
-## 📝 License
-This project is open-source and free to use.
+## 🎛️ Core Features
+- **16-Band Graphic EQ** with an isolated Pre-amp slider.
+- **Elastic String Dragging** (Right-Click) to move multiple bands simultaneously.
+- **Modern Neon UI** with a custom-drawn Power Toggle and glowing Splines.
+- **Auto-Persistence** across sessions.
