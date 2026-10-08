@@ -367,7 +367,8 @@ namespace CoolEqualizer
         private const string ApoDir = @"C:\Program Files\EqualizerAPO\config";
         private const string EqFile = "cool_eq.txt";
         private const string ConfigFile = "config.txt";
-        private const string SettingsFile = "cool_settings.txt"; 
+        private const string SettingsFile = @"C:\Program Files\EqualizerAPO\config\cool_settings.txt"; 
+        private const string PresetsFile = @"C:\Program Files\EqualizerAPO\config\cool_presets.txt";
         
         private EqPanel eqPanel;
         
@@ -391,11 +392,7 @@ namespace CoolEqualizer
             this.StartPosition = FormStartPosition.CenterScreen;
             
             try {
-                if (File.Exists("CE-icon2.png"))
-                {
-                    Bitmap bmp = new Bitmap("CE-icon2.png");
-                    this.Icon = Icon.FromHandle(bmp.GetHicon());
-                }
+                this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             } catch { }
 
             InitDefaultPresets();
@@ -412,13 +409,21 @@ namespace CoolEqualizer
             presets["Bass Boost"] = new float[] { 6, 6, 5, 5, 4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             presets["Treble Boost"] = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 4, 5, 6, 6 };
             presets["V-Shape (Rock)"] = new float[] { 5, 5, 4, 3, 1, -1, -2, -3, -2, -1, 1, 3, 4, 5, 6, 6 };
+            
+            // Hardcoded User Presets
+            presets["Nice1"] = new float[] { 14f, 13f, 11.3f, 8.8f, 5.9f, 3f, 0.8f, 0f, 0.8f, 3f, 5.9f, 8.8f, 11.3f, 13f, 14f, 14.6f };
+            presets["Max1"] = new float[] { 14.8f, 14.6f, 13f, 10.5f, 6.8f, 2f, -2.6f, -4f, -3.9f, -1.1f, 2.7f, 6.1f, 9f, 10.6f, 11.8f, 12.5f };
+            presets["NiceBass2"] = new float[] { 10.5f, 12.5f, 11.5f, 7.5f, 3.5f, -0.1f, -3.5f, -5f, -4.1f, -1.3f, 2.7f, 6.6f, 9.9f, 12.3f, 13.6f, 14.5f };
+            presets["GoodBass1"] = new float[] { 10f, 15f, 15f, 8.9f, 4f, 0f, -2.7f, -5f, -4.2f, -1.6f, 1.6f, 4.1f, 5.7f, 6.9f, 7f, 6.6f };
+            presets["Perfect"] = new float[] { 10f, 15f, 15f, 9.1f, 4.3f, 0.4f, -2.2f, -4.5f, -3.7f, -1.2f, 1.9f, 4.3f, 5.8f, 7f, 7f, 6.6f };
+            presets["Perfect2"] = new float[] { 5f, 10f, 10f, 7f, 4.3f, 0.4f, -2.2f, -4.5f, -3.7f, -1.2f, 1.9f, 4.3f, 5.8f, 7f, 7f, 6.6f };
         }
 
         private void LoadCustomPresets()
         {
-            if (File.Exists("presets.txt"))
+            if (File.Exists(PresetsFile))
             {
-                foreach(var line in File.ReadAllLines("presets.txt"))
+                foreach(var line in File.ReadAllLines(PresetsFile))
                 {
                     var parts = line.Split('|');
                     if (parts.Length == 2)
@@ -438,12 +443,13 @@ namespace CoolEqualizer
         private void SaveCustomPresets()
         {
             List<string> lines = new List<string>();
+            string[] defaults = { "Flat", "Bass Boost", "Treble Boost", "V-Shape (Rock)", "Nice1", "Max1", "NiceBass2", "GoodBass1", "Perfect", "Perfect2" };
             foreach(var kv in presets)
             {
-                if (kv.Key == "Flat" || kv.Key == "Bass Boost" || kv.Key == "Treble Boost" || kv.Key == "V-Shape (Rock)") continue;
+                if (Array.IndexOf(defaults, kv.Key) >= 0) continue;
                 lines.Add(string.Format("{0}|{1}", kv.Key, string.Join(",", kv.Value)));
             }
-            File.WriteAllLines("presets.txt", lines.ToArray());
+            File.WriteAllLines(PresetsFile, lines.ToArray());
         }
 
         private void SaveLastSettings()
@@ -495,10 +501,10 @@ namespace CoolEqualizer
             this.Controls.Add(topBar);
 
             try {
-                if (File.Exists("CE-icon2.png"))
+                if (this.Icon != null)
                 {
                     PictureBox pic = new PictureBox();
-                    pic.Image = Image.FromFile("CE-icon2.png");
+                    pic.Image = this.Icon.ToBitmap();
                     pic.SizeMode = PictureBoxSizeMode.Zoom;
                     pic.Size = new Size(50, 50);
                     pic.Location = new Point(15, 12);
