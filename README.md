@@ -1,6 +1,6 @@
 # Cool Equalizer (APO) 🎛️
 
-A lightweight, zero-dependency, standalone 16-band Graphic Equalizer GUI built in native C# WinForms. Designed to run as a front-end for [Equalizer APO](https://equalizerapo.com/), this application features a sleek, futuristic VST Studio interface.
+A lightweight, zero-dependency, standalone 16-band Graphic Equalizer GUI built in native C# WinForms. Designed to run as a front-end for [Equalizer APO](https://equalizerapo.com/) (Stable at EqualizerAPO-x64-1.4.2), this application features a sleek, futuristic VST Studio interface.
 
 ## 📁 Repository Structure
 
@@ -20,4 +20,7 @@ The traditional version of the app.
 - *Best for developers who want to observe standard file I/O behavior and have explicit access to their local setting files.*
 
 ---
-**Prerequisites for both versions:** Windows OS with .NET Framework 4.0+ and [Equalizer APO](https://equalizerapo.com/) installed.
+
+## 🛠️ **Prerequisites for both versions:**
+
+Windows OS with .NET Framework 4.0+ and [Equalizer APO](https://equalizerapo.com/) installed **(Stable at EqualizerAPO-x64-1.4.2)**.
