@@ -24,3 +24,7 @@ The traditional version of the app.
 ## 🛠️ **Prerequisites for both versions:**
 
 Windows OS with .NET Framework 4.0+ and [Equalizer APO](https://equalizerapo.com/) installed **(Stable at EqualizerAPO-x64-1.4.2)**.
+
+### 3. [/Installer](./Installer/) (All-in-One Setup)
+A custom C# bootstrapper that bundles both the Equalizer APO installer and our Portable executable into a single "CoolEqualizer_Setup.exe". When run, it silently drops the app into "C:\Program Files\EqualizerAPO", creates a Desktop shortcut, and then launches the APO installation wizard. 
+- *Best for distribution to new users who haven't installed Equalizer APO yet.*
